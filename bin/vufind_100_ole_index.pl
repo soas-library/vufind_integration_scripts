@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 # @name: vufind_100_ole_index.pl
-# @version: 1.0
+# @version: 1.1
 # @creation_date: 2014-11-01
 # @license: GNU General Public License version 3 (GPLv3) <https://www.gnu.org/licenses/gpl-3.0.en.html>
 # @author: Simon Barron <sb174@soas.ac.uk>
@@ -21,6 +21,8 @@
 #    wklya for the creation of the alphabetic index
 #    autho for the optimizing of the authority index
 #
+# @edited_date: 2017-08-15 Switched to new filenames for new OLE batch exports
+
 require 5.10.1;
 
 use strict;
@@ -52,8 +54,8 @@ my $timestamp= strftime("%Y%m%d%H%M%S", localtime);
 my $date= strftime("%d.%m.%y", localtime);
 my $file_date = strftime("%d.%m.%y", localtime);
 my $program_id = "vufind_100_ole_index";
-my $ole_timestamp = strftime("%Y-%m-%d", localtime);
-my $yesterday_timestamp = strftime("%Y-%m-%d", localtime);
+my $ole_timestamp = strftime("%Y-%b-%d", localtime);
+my $yesterday_timestamp = strftime("%Y-%b-%d", localtime);
 
 my $oai_source = "SOAS_Research_Online";
 my $oai_properties = "eprints.properties";
@@ -72,6 +74,7 @@ my $logon_pwd;
 my $file_count = 0;
 my $file_name_daily = "vufind_daily-$ole_timestamp";
 my $file_name_nightly = "vufind_nightly-$ole_timestamp";
+my $file_name = "vufind_full_export*$ole_timestamp";
 my $daily_file_name;
 my $auth_file_name;
 my $marc_file_name;
@@ -137,7 +140,7 @@ sub concatenate_files_nightly
 #
  	{
   		$marc_file_name = "$file_prefix_nightly$file_date$file_suffix";
-  		$CMD = "cat $INPUTDIR$file_name_nightly*.mrc > $DAILYDIR$marc_file_name";
+  		$CMD = "cat $INPUTDIR$file_name*.mrc > $DAILYDIR$marc_file_name";
 		system($CMD);
 		my $result = check_ole_export("$DAILYDIR$marc_file_name");
 		return $result;

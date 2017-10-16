@@ -13,6 +13,14 @@ echo "$RUN_DATE - vufind importing sobek records - " >> "${VUFIND_MAIN_LOG}"
 cd ${VUFIND_BIN_DIR}
 pwd
 ./vufind_import_sobek.pl sobek nightly >> "${VUFIND_MAIN_LOG}"
+
+# Delete wrong Sobek records (856$u link not available)
+# See http://support.scanbit.net/show_bug.cgi?id=1443
+
+cd /usr/local/vufind/util/
+#php deletes.php /usr/local/vufind/util/sobek-wrong-link.txt  flat
+php optimize.php
+
  
 RUN_DATE_END=`date +"%Y%m%d%H%M"`
 echo "$RUN_DATE_END - vufind importing sobek records - " >> "${VUFIND_MAIN_LOG}"

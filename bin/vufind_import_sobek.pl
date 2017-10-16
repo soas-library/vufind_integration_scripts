@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 # @name: vufind_import_sobek.pl
-# @version: 1.0
+# @version: 1.1
 # @creation_date: 2016-07-01
 # @license: GNU General Public License version 3 (GPLv3) <https://www.gnu.org/licenses/gpl-3.0.en.html>
 # @author: Scanbit <info.sca.ils@gmail.com>
@@ -31,14 +31,14 @@ my $index_log_file = "xxx";
 my $index_log = "xxx";
 my $harvest_log_file = "xxx";
 my $harvest_log = "xxx";
-my $vufind_log_prefix = "vufind_full_index_log_";
+my $vufind_log_prefix = "vufind_sobek_index_log_";
 my $vufind_dly_log_prefix = "vufind_dly_update_log_";
 my $vufind_auth_log_prefix = "vufind_auth_update_log_";
-my $program_log = "vufind_100_ole_index.log";
+my $program_log = "vufind_import_sobek.log";
 my $timestamp= strftime("%Y%m%d%H%M%S", localtime);
 my $date= strftime("%d.%m.%y", localtime);
 my $file_date = strftime("%d.%m.%y", localtime);
-my $program_id = "vufind_100_ole_index";
+my $program_id = "vufind_import_sobek";
 my $ole_timestamp = strftime("%Y-%m-%d", localtime);
 my $yesterday_timestamp = strftime("%Y-%m-%d", localtime);
  

@@ -22,7 +22,7 @@
 #    autho for the optimizing of the authority index
 #
 # @edited_date: 2017-08-15 Switched to new filenames for new OLE batch exports
-
+#
 require 5.10.1;
 
 use strict;
@@ -89,7 +89,7 @@ my $config = Config::Tiny->new();
 my $index_files_expected = 8;
 
 my $collection  = "SOAS Library";
-my $server = "vftest01.lis.soas.ac.uk";
+my $server = "vfdev01.lis.soas.ac.uk";
 
 ##############################################################################################################
 sub log_message
@@ -188,6 +188,8 @@ sub drop_collection_index
 		system($CMD);
 		$CMD =  "rm -Rf update?stream.body*";
 		system($CMD);
+		$message = "VuFind index dropped.";
+                log_message;
 	}
 #################################################################################################################
 sub load_vufind_refresh

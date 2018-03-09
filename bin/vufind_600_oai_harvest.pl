@@ -71,7 +71,7 @@ my $config = Config::Tiny->new();
 my $index_files_expected = 8;
 
 my $collection = "SOAS Research Online";
-my $server = "vftest01.lis.soas.ac.uk";
+my $server = "vfdev01.lis.soas.ac.uk";
 
 
 ##############################################################################################################
@@ -241,14 +241,14 @@ elsif ($action eq "monthly")
             #build_sitemap;
         }
 elsif ($action eq "daily")
-  		{
-			harvest_sources;
-			import_sources;
-			delete_sources;
-			optimize_vufind_index;
-			create_alphabetic_index;
-			#build_sitemap;
-		}
+	{
+		harvest_sources;
+		import_sources;
+		delete_sources;
+		optimize_vufind_index;
+		create_alphabetic_index;
+		#build_sitemap;
+	}
 else
         {
        	  $message = "Invalid action passed to program = $action";

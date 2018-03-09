@@ -2,7 +2,7 @@
 RUN_DATE=`date +"%Y%m%d%H%M"`
 VUFIND_LOG_DIR="/home/vufind/logs/"
 VUFIND_BIN_DIR="/home/vufind/bin"
-VUFIND_MAIN_LOG="/home/vufind/logs/vufind_main_run.log"
+VUFIND_MAIN_LOG="/home/vufind/logs/vufind_import_sobek.log"
  
 echo "Log in ${VUFIND_MAIN_LOG}" 
 PROCESS_TO_RUN="vufind_import_sobek"

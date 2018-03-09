@@ -73,7 +73,7 @@ my $config = Config::Tiny->new();
 my $index_files_expected = 8;
 
 my $collection = "SOAS Digital Library";
-my $server = "vftest01.lis.soas.ac.uk";
+my $server = "vfdev01.lis.soas.ac.uk";
 
  
 ##############################################################################################################

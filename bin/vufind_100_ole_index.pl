@@ -164,7 +164,7 @@ sub drop_vufind_index
 # Additionally a backup of last solr index is made
 	{
  		chdir  $VUFIND_DIR or die "can't chdir to $VUFIND_DIR: $!";		    
-		$CMD = "\.\/vufind.sh stop";	
+		$CMD = "\.\/solr.sh stop";	
  		system($CMD);
  		sleep(25);
 		$CMD = "rm -f /home/vufind/backup/solr_backup/solr.tar.gz";
@@ -173,7 +173,7 @@ sub drop_vufind_index
 		system($CMD);
  		$CMD = "rm -rf solr/biblio/index solr/biblio/spell* solr/biblio/tlog";
  		system($CMD);
-		$CMD = "\.\/vufind.sh start";	
+		$CMD = "\.\/solr.sh start";	
  		system($CMD);
  		sleep(120);
 	}

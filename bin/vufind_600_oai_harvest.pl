@@ -91,12 +91,12 @@ sub drop_oai_index
     {
         chdir  $VUFIND_DIR or die "can't chdir to $VUFIND_DIR: $!";
 
-		$CMD = "\.\/vufind.sh stop";
+		$CMD = "\.\/solr.sh stop";
 		system($CMD);
 		sleep(25);
 		$CMD = "rm -rf local/harvest/$oai_source";
 		system($CMD);
-		$CMD = "\.\/vufind.sh start";
+		$CMD = "\.\/solr.sh start";
 		system($CMD);
 		sleep(120);
 	}

@@ -1,12 +1,12 @@
 #!/usr/bin/perl -w
-# @name: vufind_import_fihrist.pl
+# @name: vufind_import_manuscript.pl
 # @version: 1.0
 # @creation_date: 2018-07-02
 # @license: GNU General Public License version 3 (GPLv3) <https://www.gnu.org/licenses/gpl-3.0.en.html>
 # @author: Simon Bowie <sb174@soas.ac.uk>
 #
 # @purpose:
-# This program will load the FIHRIST data exported from GitHub into VuFind.
+# This program will load SOAS Manuscript data exported from GitHub into VuFind.
  
 require 5.10.1;
  
@@ -32,15 +32,15 @@ my $import_log = "xxx";
 my $vufind_log_prefix = "vufind_full_index_log_";
 my $vufind_dly_log_prefix = "vufind_dly_update_log_";
 my $vufind_auth_log_prefix = "vufind_auth_update_log_";
-my $program_log = "vufind_import_fihrist.log";
+my $program_log = "vufind_import_manuscript.log";
 my $timestamp= strftime("%Y%m%d%H%M%S", localtime);
 my $date= strftime("%d.%m.%y", localtime);
 my $file_date = strftime("%d.%m.%y", localtime);
 my $program_id = "vufind_100_ole_index";
 my $yesterday_timestamp = strftime("%Y-%m-%d", localtime);
  
-my $oai_source = "fihrist";
-my $oai_properties = "fihrist.properties";
+my $oai_source = "manuscript";
+my $oai_properties = "manuscript.properties";
  
 my $file_count = 0;
 my $daily_file_name;
@@ -52,7 +52,7 @@ my $ils_code_action = "xxx";
 my $config = Config::Tiny->new();
 my $index_files_expected = 8;
 
-my $collection = "FIHRIST";
+my $collection = "SOAS Manuscripts";
 my $server = "vfdev01.lis.soas.ac.uk";
  
 ##############################################################################################################
@@ -155,7 +155,7 @@ $message = "The import action is $ils_action";
 log_message;
 $ils_code_action = "$ils_code$ils_action";
  
-if ($ils_code_action eq "fihristdaily")
+if ($ils_code_action eq "manuscriptdaily")
 {
 	#drop_collection_index;
 	import_sources;
@@ -163,7 +163,7 @@ if ($ils_code_action eq "fihristdaily")
 	create_alphabetic_index;
 	create_hierarchy_trees;
 }                              
-elsif ($ils_code_action eq "fihristweekly")
+elsif ($ils_code_action eq "manuscriptweekly")
 {
 	drop_collection_index;
 	import_sources;

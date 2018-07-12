@@ -1,5 +1,5 @@
 #!/bin/bash
-# @name: vufind_full_import_fihrist.sh
+# @name: vufind_full_import_manuscript.sh
 # @version: 1.0
 # @creation_date: 2018-07-02
 # @license: GNU General Public License version 3 (GPLv3) <https://www.gnu.org/licenses/gpl-3.0.en.html>
@@ -23,13 +23,13 @@ echo "$RUN_DATE - VuFind importing FIHRIST records - " >> "${VUFIND_MAIN_LOG}"
 cd ${VUFIND_HOME_DIR}
 rm -rf ./fihrist-mss
 git clone https://github.com/soas-library/fihrist-mss.git
-find /usr/local/vufind/local/harvest/fihrist/processed/ -name '*.xml' -exec rm {} \;
+find /usr/local/vufind/local/harvest/manuscript/processed/ -name '*.xml' -exec rm {} \;
 
-cp ${VUFIND_HOME_DIR}/fihrist-mss/collections/school\ of\ oriental\ and\ african\ studies/*.xml /usr/local/vufind/local/harvest/fihrist/
+cp ${VUFIND_HOME_DIR}/fihrist-mss/collections/school\ of\ oriental\ and\ african\ studies/*.xml /usr/local/vufind/local/harvest/manuscript/
 
 cd ${VUFIND_BIN_DIR}
 pwd
-./vufind_import_fihrist.pl fihrist weekly >> "${VUFIND_MAIN_LOG}"
+./vufind_import_manuscript.pl manuscript weekly >> "${VUFIND_MAIN_LOG}"
  
 RUN_DATE_END=`date +"%Y%m%d%H%M"`
 echo "$RUN_DATE_END - VuFind importing FIHRIST records ended - " >> "${VUFIND_MAIN_LOG}"

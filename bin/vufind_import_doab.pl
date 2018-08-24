@@ -1,12 +1,12 @@
 #!/usr/bin/perl -w
-# @name: vufind_import_doaj.pl
+# @name: vufind_import_doab.pl
 # @version: 1.0
-# @creation_date: 2018-08-22
+# @creation_date: 2018-08-24
 # @license: GNU General Public License version 3 (GPLv3) <https://www.gnu.org/licenses/gpl-3.0.en.html>
 # @author: Simon Bowie <sb174@soas.ac.uk>
 #
 # @purpose:
-# This program will load the data exported from DOAJ into VuFind.
+# This program will load the data exported from Directory of Open Access Books into VuFind.
  
 require 5.10.1;
  
@@ -25,16 +25,16 @@ my $VUFIND_HARVEST_DIR="/usr/local/vufind/harvest/";
 
 my $harvest_log_file = "xxx";
 my $harvest_log = "xxx";
-my $vufind_log_prefix = "vufind_full_import_doaj_log_";
+my $vufind_log_prefix = "vufind_full_import_doab_log_";
 my $timestamp= strftime("%Y%m%d%H%M%S", localtime);
 my $date= strftime("%d.%m.%y", localtime);
 my $file_date = strftime("%d.%m.%y", localtime);
-my $program_id = "vufind_import_doaj";
+my $program_id = "vufind_import_doab";
 my $yesterday_timestamp = strftime("%Y-%m-%d", localtime);
  
-my $oai_source = "DOAJart";
-my $oai_properties = "doaj.properties";
-my $collection = "Directory of Open Access Journals";
+my $oai_source = "DOAB";
+my $oai_properties = "doab.properties";
+my $collection = "Directory of Open Access Books";
 my $server = "localhost";
 
 my $source = "xxx";
@@ -133,14 +133,14 @@ $message = "The import action is $frequency";
 log_message;
 $source_frequency = "$source$frequency";
  
-if ($source_frequency eq "doajnightly")
+if ($source_frequency eq "doabnightly")
 {
 	#drop_collection_index;
 	import_sources;
 	optimize_vufind_index;
 	create_alphabrowse_index;
 }                              
-elsif ($source_frequency eq "doajweekly")
+elsif ($source_frequency eq "doabweekly")
 {
 	drop_collection_index;
 	import_sources;

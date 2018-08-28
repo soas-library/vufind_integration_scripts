@@ -18,11 +18,11 @@ VUFIND_BIN_HIERARCHY="/usr/local/vufind/util"
 export PATH
 export VUFIND_HOME=/usr/local/vufind/
 export VUFIND_LOCAL_DIR=/usr/local/vufind/local
-find  /usr/local/vufind/local/harvest/DOAJart/ -name '*.xml' -exec rm {} \;
-find  /usr/local/vufind/local/harvest/DOAJart/processed/ -name '*.xml' -exec rm {} \;
-> /usr/local/vufind/local/harvest/DOAJart/info.txt
-rm /usr/local/vufind/local/harvest/DOAJart/last_harvest.txt
-rm /usr/local/vufind/local/harvest/DOAJart/last_state.txt
+find  /usr/local/vufind/local/harvest/DOAJ/ -name '*.xml' -exec rm {} \;
+find  /usr/local/vufind/local/harvest/DOAJ/processed/ -name '*.xml' -exec rm {} \;
+> /usr/local/vufind/local/harvest/DOAJ/info.txt
+rm /usr/local/vufind/local/harvest/DOAJ/last_harvest.txt
+rm /usr/local/vufind/local/harvest/DOAJ/last_state.txt
 cd /usr/local/vufind/harvest
 /usr/bin/php harvest_oai.php DOAJ
  

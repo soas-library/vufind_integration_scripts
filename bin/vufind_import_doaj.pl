@@ -25,7 +25,8 @@ my $VUFIND_HARVEST_DIR="/usr/local/vufind/harvest/";
 
 my $harvest_log_file = "xxx";
 my $harvest_log = "xxx";
-my $vufind_log_prefix = "vufind_full_import_doaj_log_";
+my $vufind_log_prefix = "vufind_harvest_doaj_log_";
+my $program_log = "vufind_import_doab.log";
 my $timestamp= strftime("%Y%m%d%H%M%S", localtime);
 my $date= strftime("%d.%m.%y", localtime);
 my $file_date = strftime("%d.%m.%y", localtime);

@@ -32,10 +32,10 @@ my $file_date = strftime("%d.%m.%y", localtime);
 my $program_id = "vufind_import_doaj";
 my $yesterday_timestamp = strftime("%Y-%m-%d", localtime);
  
-my $oai_source = "DOAJart";
+my $oai_source = "DOAJ";
 my $oai_properties = "doaj.properties";
 my $collection = "Directory of Open Access Journals";
-my $server = "localhost";
+my $server = "vfdev01.lis.soas.ac.uk";
 
 my $source = "xxx";
 my $frequency = "xxx";

@@ -24,7 +24,7 @@ find  /usr/local/vufind/local/harvest/DOAJart/processed/ -name '*.xml' -exec rm 
 rm /usr/local/vufind/local/harvest/DOAJart/last_harvest.txt
 rm /usr/local/vufind/local/harvest/DOAJart/last_state.txt
 cd /usr/local/vufind/harvest
-/usr/bin/php harvest_oai.php DOAJart
+/usr/bin/php harvest_oai.php DOAJ
  
 echo "Log in ${VUFIND_MAIN_LOG}" 
 PROCESS_TO_RUN="vufind_full_harvest_and_import_doaj"

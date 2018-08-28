@@ -25,7 +25,8 @@ my $VUFIND_HARVEST_DIR="/usr/local/vufind/harvest/";
 
 my $harvest_log_file = "xxx";
 my $harvest_log = "xxx";
-my $vufind_log_prefix = "vufind_full_import_doab_log_";
+my $vufind_log_prefix = "vufind_harvest_doab_log_";
+my $program_log = "vufind_import_doab.log";
 my $timestamp= strftime("%Y%m%d%H%M%S", localtime);
 my $date= strftime("%d.%m.%y", localtime);
 my $file_date = strftime("%d.%m.%y", localtime);
@@ -35,7 +36,7 @@ my $yesterday_timestamp = strftime("%Y-%m-%d", localtime);
 my $oai_source = "DOAB";
 my $oai_properties = "doab.properties";
 my $collection = "Directory of Open Access Books";
-my $server = "localhost";
+my $server = "vfdev01.lis.soas.ac.uk";
 
 my $source = "xxx";
 my $frequency = "xxx";

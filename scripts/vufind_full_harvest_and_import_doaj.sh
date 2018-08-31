@@ -25,7 +25,7 @@ rm /usr/local/vufind/local/harvest/DOAJ/last_harvest.txt
 rm /usr/local/vufind/local/harvest/DOAJ/last_state.txt
 cd /usr/local/vufind/harvest
 /usr/bin/php harvest_oai.php DOAJ
-sed -i "s/xmlns:oai_dc/ xmlns:oai_dc/" local/harvest/DOAJ/*.xml
+sed -i "s/xmlns:dc/ xmlns:dc/" /usr/local/vufind/local/harvest/DOAJ/*.xml
  
 echo "Log in ${VUFIND_MAIN_LOG}" 
 PROCESS_TO_RUN="vufind_full_harvest_and_import_doaj"

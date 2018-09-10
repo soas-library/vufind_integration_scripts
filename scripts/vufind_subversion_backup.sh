@@ -15,7 +15,8 @@ cd /home/vufind/svn
 cp -ra /home/vufind/bin/* bin/
 cp -ra /home/vufind/scripts/* scripts/
 cp -ra /home/vufind/backup/vufind.$DATE/source_code/* source_code
+crontab -l > cron_jobs/crontab.txt
 
 svn add --force .
 
-svn commit -m "Updating Subversion copy of VuFind integration scripts and source code"
+svn commit -m "Updating Subversion copy of VuFind integration scripts and source code - $DATE"

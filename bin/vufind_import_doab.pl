@@ -35,7 +35,7 @@ my $yesterday_timestamp = strftime("%Y-%m-%d", localtime);
  
 my $oai_source = "DOAB";
 my $oai_properties = "doab.properties";
-my $collection = "Open access books";
+my $collection = "Directory of Open Access Books";
 my $server = "vfdev01.lis.soas.ac.uk";
 
 my $source = "xxx";

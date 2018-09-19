@@ -27,7 +27,7 @@ cd /usr/local/vufind/harvest
 /usr/bin/php harvest_oai.php DOAB
  
 echo "Log in ${VUFIND_MAIN_LOG}" 
-PROCESS_TO_RUN="vufind_full_harvest_and_import_doaj"
+PROCESS_TO_RUN="vufind_full_harvest_and_import_doab"
 echo "$RUN_DATE - VuFind importing DOAB records - " >> "${VUFIND_MAIN_LOG}"
   
 cd ${VUFIND_BIN_DIR}

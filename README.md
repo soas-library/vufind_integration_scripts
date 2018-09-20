@@ -2,6 +2,22 @@
 
 Scripts on VuFind servers are run from /home/vufind/bin for Perl scripts and /home/vufind/scripts for shell scripts. Logs are kept in /home/vufind/logs. All scripts are run either directly from the root crontab or via the vufind_control_script from the root crontab. Run `crontab -e` as root to check all scripts running in Cron on the server.
 
+## Version control
+
+GitHub is used for version control and transferring files. To commit changes on the dev server:
+~~~~
+git commit -a --author="SimonXIX <sb174@soas.ac.uk>" -m "Changes to header"
+
+git push origin [BRANCH_NAME]
+~~~~
+To retrieve changes in the UAT server:
+~~~~
+git fetch origin
+
+git reset --hard origin/[BRANCH_NAME]
+~~~~
+To merge changes from a dev branch into the master 'soas' branch, merge [BRANCH NAME] into soas via pull request: https://help.github.com/articles/merging-a-pull-request/
+
 ## Shell scripts
 
 Shell scripts are run from /home/vufind/scripts and either run tasks directly on the server via the command line or start the VuFind control script with different parameters to run different Perl scripts. 

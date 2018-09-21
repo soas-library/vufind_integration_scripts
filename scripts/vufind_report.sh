@@ -17,4 +17,4 @@ free -m  >> /tmp/report.txt
 echo -e "\nProcess Running\n" >> /tmp/report.txt
 top -b -n 1 >> /tmp/report.txt
 
-mailx -s "System State $(hostname)"  sb174@soas.ac.uk ap87@soas.ac.uk ft9@soas.ac.uk bj1@soas.ac.uk < /tmp/report.txt
+mailx -s "System State $(hostname)"  sb174@soas.ac.uk ap87@soas.ac.uk ft9@soas.ac.uk bj1@soas.ac.uk csbs@soas.ac.uk < /tmp/report.txt

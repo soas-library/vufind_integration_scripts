@@ -119,7 +119,7 @@ log_message;
 if (!$ARGV[0])
 {
    
-    $message = "No target ILS/action passed to program";
+    $message = "No target source or frequency passed to program";
     log_message;
     $message = " ** Program Failed to complete ** ";
     close program_log or die "Cannot close  $program_id log: $!";
@@ -127,10 +127,10 @@ if (!$ARGV[0])
 }
  
 $source=$ARGV[0];
-$message = "The import ILS source is $source";
+$message = "The import source is $source";
 log_message;
 $frequency=$ARGV[1];
-$message = "The import action is $frequency";
+$message = "The import frequency is $frequency";
 log_message;
 $source_frequency = "$source$frequency";
  

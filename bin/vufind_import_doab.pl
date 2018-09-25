@@ -36,6 +36,7 @@ my $yesterday_timestamp = strftime("%Y-%m-%d", localtime);
 my $oai_source = "DOAB";
 my $oai_properties = "doab.properties";
 my $collection = "Directory of Open Access Books";
+my $recordtype = "doab";
 my $server = "vfdev01.lis.soas.ac.uk";
 
 my $source = "xxx";
@@ -62,7 +63,7 @@ sub drop_collection_index
 #
 	{
 		chdir  $VUFIND_DIR or die "can't chdir to $VUFIND_DIR: $!";
-		$CMD =   "wget 'http://$server:8080/solr/biblio/update?stream.body=<delete><query>collection:\"$collection\"</query></delete>&commit=true'";
+		$CMD =   "wget 'http://$server:8080/solr/biblio/update?stream.body=<delete><query>recordtype:\"$recordtype\"</query></delete>&commit=true'";
 		system($CMD);
 		$CMD = "rm -Rf update?stream.body*";
 		system($CMD);      

@@ -38,6 +38,8 @@ my $oai_source = "Archive";
 my $oai_properties = "archive.properties";
 my $collection = "SOAS Archive";
 my $server = "vfdev01.lis.soas.ac.uk";
+my $archive_file = "xxx";
+my $file_to_check = "last_harvest.txt";
 
 my $source = "xxx";
 my $frequency = "xxx";
@@ -126,16 +128,18 @@ sub import_sources
 sub check_archives_harvest
 # Check that archives XML files have been harvested
 
-	my $archives_files = '$VUFIND_ARCHIVES_DIR/*.xml'
-	if -f $archive_files {
-		$message = "Harvested archive XML files exist";
-		log_message;
-		return 1;
-	}
-	else {
-		$message = "Harvested archive XML files are missing! Process will stop.";
-        log_message;
-		return 0;
+	{
+		$archive_file = "$VUFIND_ARCHIVES_DIR/$file_to_check";
+		if (-f $archive_file) {
+			$message = "Harvested archive XML files exist";
+			log_message;
+			return 1;
+		}
+		else {
+			$message = "Harvested archive XML files are missing! Process will stop.";
+			log_message;
+			return 0;
+		}
 	}
 
 ##############################################################################################################
@@ -165,37 +169,37 @@ $source_frequency = "$source$frequency";
  
 if ($source_frequency eq "archivenightly")
 {
-	#if (check_archives_harvest) {
+	if (check_archives_harvest) {
 		#drop_collection_index;
 		import_sources;
 		optimize_vufind_index;
 		create_alphabetic_index;
 		create_hierarchy_trees;
-	#}
-	#else {
-		#$message = "Warning: archives export does not exist";
-		#log_message;
-		#my $cmd = mailx -s "Incremental harvest of Calm archives files into VuFind failed on $(hostname)"  sb174@soas.ac.uk;
-		#print $cmd . "\n";
-		#system($cmd);
-	#}
+	}
+	else {
+		$message = "Warning: archives export does not exist";
+		log_message;
+		$CMD = 'echo "Full harvest of Calm archives files into VuFind failed" | mailx -r "vufind@soas.ac.uk" -s "Archives harvest into VuFind failed" sb174@soas.ac.uk csbs@soas.ac.uk';
+		print $CMD . "\n";
+		system($CMD);
+	}
 }                              
 elsif ($source_frequency eq "archiveweekly")
 {
-	#if (check_archives_harvest) {
+	if (check_archives_harvest) {
 		drop_collection_index;
 		import_sources;
 		optimize_vufind_index;
 		create_alphabetic_index;
 		create_hierarchy_trees;
-	#}
-	#else {
-		#$message = "Warning: archives export does not exist";
-		#log_message;
-		#my $cmd = mailx -s "Full harvest of Calm archives files into VuFind failed on $(hostname)"  sb174@soas.ac.uk;
-		#print $cmd . "\n";
-		#system($cmd);
-	#}
+	}
+	else {
+		$message = "Warning: archives export does not exist";
+		log_message;
+		$CMD = 'echo "Full harvest of Calm archives files into VuFind failed" | mailx -r "vufind@soas.ac.uk" -s "Archives harvest into VuFind failed" sb174@soas.ac.uk csbs@soas.ac.uk';
+		print $CMD . "\n";
+		system($CMD);
+	}
 }
 else
 {

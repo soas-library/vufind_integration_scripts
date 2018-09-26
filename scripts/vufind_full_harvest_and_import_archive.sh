@@ -6,13 +6,17 @@
 # @author: Simon Bowie <sb174@soas.ac.uk>
 #
 # @purpose:
-# This script harvests and then imports records from SOAS Archives (Axiell Calm) VuFind
+# This script harvests and then imports records from SOAS Archives (Axiell Calm) VuFind.
+# This should be run with parameters to specify the source and the frequency of the harvest. Source will always be 'archive'; frequency can either be 'weekly' or 'nightly'. 
 
 PATH=$PATH:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
 RUN_DATE=`date +"%Y%m%d%H%M"`
 VUFIND_LOG_DIR="/home/vufind/logs/"
 VUFIND_BIN_DIR="/home/vufind/bin"
 VUFIND_MAIN_LOG="/home/vufind/logs/vufind_main_run.log"
+
+SOURCE=$1
+FREQUENCY=$2
 
 export PATH
 export LANG="en_GB.UTF-8"
@@ -48,7 +52,7 @@ echo "$RUN_DATE - VuFind importing archive records - " >> "${VUFIND_MAIN_LOG}"
   
 cd ${VUFIND_BIN_DIR}
 pwd
-./vufind_import_archive.pl archive weekly >> "${VUFIND_MAIN_LOG}"
+./vufind_import_archive.pl $SOURCE $FREQUENCY >> "${VUFIND_MAIN_LOG}"
  
 RUN_DATE_END=`date +"%Y%m%d%H%M"`
 echo "$RUN_DATE_END - VuFind importing archive records - " >> "${VUFIND_MAIN_LOG}"

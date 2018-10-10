@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 # @name: vufind_import_manuscript.pl
-# @version: 1.0
+# @version: 1.1
 # @creation_date: 2018-07-02
 # @license: GNU General Public License version 3 (GPLv3) <https://www.gnu.org/licenses/gpl-3.0.en.html>
 # @author: Simon Bowie <sb174@soas.ac.uk>
@@ -15,45 +15,40 @@ use strict;
 use POSIX qw(strftime);
  
 use Config::Tiny;
- 
+
 my $BIN_DIR="/home/vufind/bin/";
-my $OUTDIR="/home/vufind/output/";
-my $INPUTDIR="/home/vufind/input/";
-my $WEEKDIR="/home/vufind/input/weekly/";
-my $DAILYDIR="/home/vufind/input/daily/";
 my $SCRIPT_DIR = "/home/vufind/scripts/";
 my $LOG_DIR="/home/vufind/logs/";
 my $VUFIND_DIR="/usr/local/vufind/";
 my $VUFIND_UTIL_DIR="/usr/local/vufind/util/";
 my $VUFIND_HARVEST_DIR="/usr/local/vufind/harvest/";
- 
-my $import_log_file = "xxx";
-my $import_log = "xxx";
-my $vufind_log_prefix = "vufind_full_index_log_";
-my $vufind_dly_log_prefix = "vufind_dly_update_log_";
-my $vufind_auth_log_prefix = "vufind_auth_update_log_";
-my $program_log = "vufind_import_manuscript.log";
+my $VUFIND_ARCHIVES_DIR="/usr/local/vufind/local/harvest/Archive";
+
+my $harvest_log_file = "xxx";
+my $harvest_log = "xxx";
+my $vufind_log_prefix = "vufind_harvest_archive_log_";
+my $program_log = "vufind_import_archive.log";
 my $timestamp= strftime("%Y%m%d%H%M%S", localtime);
 my $date= strftime("%d.%m.%y", localtime);
 my $file_date = strftime("%d.%m.%y", localtime);
-my $program_id = "vufind_100_ole_index";
+my $program_id = "vufind_import_doab";
 my $yesterday_timestamp = strftime("%Y-%m-%d", localtime);
  
 my $oai_source = "manuscript";
 my $oai_properties = "manuscript.properties";
- 
-my $file_count = 0;
-my $daily_file_name;
-my $CMD;
-my $message;
-my $ils_code = "xxx";
-my $ils_action = "xxx";
-my $ils_code_action = "xxx";
-my $config = Config::Tiny->new();
-my $index_files_expected = 8;
-
 my $collection = "SOAS Manuscripts";
 my $server = "vfdev01.lis.soas.ac.uk";
+my $archive_file = "xxx";
+my $file_to_check = "last_harvest.txt";
+
+my $source = "xxx";
+my $frequency = "xxx";
+my $source_frequency = "xxx";
+my $file_count = 0;
+
+my $CMD;
+my $message;
+my $config = Config::Tiny->new();
  
 ##############################################################################################################
 sub log_message
@@ -102,21 +97,21 @@ sub create_hierarchy_trees
 		log_message;
 	}
 ##################################################################################################################               
-sub create_alphabetic_index
-# Create the  alphabetic index
+sub create_alphabrowse_index
+# Create the alphabrowse index
 #
 	{
-		$message = "Alphabetic index has started";
+		$message = "Alphabrowse index has started";
 		log_message;
 		chdir  $VUFIND_DIR or die "can't chdir to $VUFIND_DIR: $!";   
 		$CMD = "\.\/index-alphabetic-browse.sh";      
 		system($CMD);                              
-		$message = "Alphabetic index has ended.";
+		$message = "Alphabrowse index has ended.";
 		log_message;
 	}
 #################################################################################################################
 sub import_sources
-# Runs the process to import specifified OAI-PMH sources into VuFind's index.
+# Runs the process to import specified OAI-PMH sources into VuFind's index.
 #
 	{
 		$message = "Importing of $oai_source has started";
@@ -147,15 +142,15 @@ if (!$ARGV[0])
     exit;
 }
  
-$ils_code=$ARGV[0];
-$message = "The import ILS source is $ils_code";
+$source=$ARGV[0];
+$message = "The import source is $source";
 log_message;
-$ils_action=$ARGV[1];
-$message = "The import action is $ils_action";
+$frequency=$ARGV[1];
+$message = "The import frequency is $frequency";
 log_message;
-$ils_code_action = "$ils_code$ils_action";
+$source_frequency = "$source$frequency";
  
-if ($ils_code_action eq "manuscriptdaily")
+if ($source_frequency eq "manuscriptdaily")
 {
 	#drop_collection_index;
 	import_sources;
@@ -163,7 +158,7 @@ if ($ils_code_action eq "manuscriptdaily")
 	create_alphabetic_index;
 	create_hierarchy_trees;
 }                              
-elsif ($ils_code_action eq "manuscriptweekly")
+elsif ($source_frequency eq "manuscriptweekly")
 {
 	drop_collection_index;
 	import_sources;
@@ -173,7 +168,7 @@ elsif ($ils_code_action eq "manuscriptweekly")
 }
 else
 {
-	$message = "Invalid ILS/action passed to program = $ils_code_action";
+	$message = "Invalid ILS/action passed to program = $source_frequency";
 	log_message;
 	close program_log or die "Cannot close  $program_id log: $!";
 	exit;

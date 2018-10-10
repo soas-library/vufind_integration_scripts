@@ -97,16 +97,16 @@ sub create_hierarchy_trees
 		log_message;
 	}
 ##################################################################################################################               
-sub create_alphabetic_index
-# Create the  alphabetic index
+sub create_alphabrowse_index
+# Create the alphabrowse index
 #
 	{
-		$message = "Alphabetic index has started";
+		$message = "Alphabrowse index has started";
 		log_message;
 		chdir  $VUFIND_DIR or die "can't chdir to $VUFIND_DIR: $!";   
 		$CMD = "\.\/index-alphabetic-browse.sh";      
 		system($CMD);                              
-		$message = "Alphabetic index has ended.";
+		$message = "Alphabrowse index has ended.";
 		log_message;
 	}
 #################################################################################################################
@@ -173,7 +173,7 @@ if ($source_frequency eq "archivenightly")
 		#drop_collection_index;
 		import_sources;
 		optimize_vufind_index;
-		create_alphabetic_index;
+		create_alphabrowse_index;
 		create_hierarchy_trees;
 	}
 	else {
@@ -190,7 +190,7 @@ elsif ($source_frequency eq "archiveweekly")
 		drop_collection_index;
 		import_sources;
 		optimize_vufind_index;
-		create_alphabetic_index;
+		create_alphabrowse_index;
 		create_hierarchy_trees;
 	}
 	else {

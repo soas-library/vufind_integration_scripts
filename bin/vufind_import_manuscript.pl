@@ -22,16 +22,15 @@ my $LOG_DIR="/home/vufind/logs/";
 my $VUFIND_DIR="/usr/local/vufind/";
 my $VUFIND_UTIL_DIR="/usr/local/vufind/util/";
 my $VUFIND_HARVEST_DIR="/usr/local/vufind/harvest/";
-my $VUFIND_ARCHIVES_DIR="/usr/local/vufind/local/harvest/Archive";
 
-my $harvest_log_file = "xxx";
-my $harvest_log = "xxx";
+my $import_log_file = "xxx";
+my $import_log = "xxx";
 my $vufind_log_prefix = "vufind_harvest_archive_log_";
-my $program_log = "vufind_import_archive.log";
+my $program_log = "vufind_import_manuscript.log";
 my $timestamp= strftime("%Y%m%d%H%M%S", localtime);
 my $date= strftime("%d.%m.%y", localtime);
 my $file_date = strftime("%d.%m.%y", localtime);
-my $program_id = "vufind_import_doab";
+my $program_id = "vufind_import_manuscript";
 my $yesterday_timestamp = strftime("%Y-%m-%d", localtime);
  
 my $oai_source = "manuscript";
@@ -155,7 +154,7 @@ if ($source_frequency eq "manuscriptdaily")
 	#drop_collection_index;
 	import_sources;
 	optimize_vufind_index;
-	create_alphabetic_index;
+	create_alphabrowse_index;
 	create_hierarchy_trees;
 }                              
 elsif ($source_frequency eq "manuscriptweekly")
@@ -163,7 +162,7 @@ elsif ($source_frequency eq "manuscriptweekly")
 	drop_collection_index;
 	import_sources;
 	optimize_vufind_index;
-	create_alphabetic_index;
+	create_alphabrowse_index;
 	create_hierarchy_trees;
 }
 else

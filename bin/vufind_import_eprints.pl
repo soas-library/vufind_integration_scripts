@@ -1,12 +1,12 @@
 #!/usr/bin/perl -w
-# @name: vufind_import_manuscript.pl
-# @version: 1.1
-# @creation_date: 2018-07-02
+# @name: vufind_import_eprints.pl
+# @version: 1.0
+# @creation_date: 2018-10-15
 # @license: GNU General Public License version 3 (GPLv3) <https://www.gnu.org/licenses/gpl-3.0.en.html>
 # @author: Simon Bowie <sb174@soas.ac.uk>
 #
 # @purpose:
-# This program will load SOAS Manuscript data exported from GitHub into VuFind.
+# This program will import SOAS Research Online data harvested from EPrints into VuFind.
  
 require 5.10.1;
  
@@ -25,17 +25,17 @@ my $VUFIND_HARVEST_DIR="/usr/local/vufind/harvest/";
 
 my $import_log_file = "xxx";
 my $import_log = "xxx";
-my $vufind_log_prefix = "vufind_harvest_archive_log_";
-my $program_log = "vufind_import_manuscript.log";
+my $vufind_log_prefix = "vufind_harvest_eprints_log_";
+my $program_log = "vufind_import_eprints.log";
 my $timestamp= strftime("%Y%m%d%H%M%S", localtime);
 my $date= strftime("%d.%m.%y", localtime);
 my $file_date = strftime("%d.%m.%y", localtime);
-my $program_id = "vufind_import_manuscript";
+my $program_id = "vufind_import_eprints";
 my $yesterday_timestamp = strftime("%Y-%m-%d", localtime);
  
-my $oai_source = "manuscript";
-my $oai_properties = "manuscript.properties";
-my $collection = "SOAS Manuscripts";
+my $oai_source = "EPrints";
+my $oai_properties = "eprints.properties";
+my $collection = "SOAS Research Online";
 my $server = "vfdev01.lis.soas.ac.uk";
 my $archive_file = "xxx";
 my $file_to_check = "last_harvest.txt";
@@ -149,7 +149,7 @@ $message = "The import frequency is $frequency";
 log_message;
 $source_frequency = "$source$frequency";
  
-if ($source_frequency eq "manuscriptdaily")
+if ($source_frequency eq "eprintsdaily")
 {
 	#drop_collection_index;
 	import_sources;
@@ -157,7 +157,7 @@ if ($source_frequency eq "manuscriptdaily")
 	create_alphabrowse_index;
 	create_hierarchy_trees;
 }                              
-elsif ($source_frequency eq "manuscriptweekly")
+elsif ($source_frequency eq "eprintsweekly")
 {
 	drop_collection_index;
 	import_sources;

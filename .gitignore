@@ -1,9 +1,11 @@
 #Untracked files
 backup
 bin/unused
+fihrist-mss
 input
 logs
 output
 scripts/unused
 scripts/ole_export_transfer_file.sh
 scripts/vufind_mysql_backup.sh
+svn

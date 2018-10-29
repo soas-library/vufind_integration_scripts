@@ -36,6 +36,7 @@ my $yesterday_timestamp = strftime("%Y-%m-%d", localtime);
 my $oai_source = "DOAB";
 my $oai_properties = "doab.properties";
 my $collection = "Directory of Open Access Books";
+my $recordtype = "doab";
 my $server = "vfdev01.lis.soas.ac.uk";
 
 my $source = "xxx";
@@ -62,7 +63,7 @@ sub drop_collection_index
 #
 	{
 		chdir  $VUFIND_DIR or die "can't chdir to $VUFIND_DIR: $!";
-		$CMD =   "wget 'http://$server:8080/solr/biblio/update?stream.body=<delete><query>collection:\"$collection\"</query></delete>&commit=true'";
+		$CMD =   "wget 'http://$server:8080/solr/biblio/update?stream.body=<delete><query>recordtype:\"$recordtype\"</query></delete>&commit=true'";
 		system($CMD);
 		$CMD = "rm -Rf update?stream.body*";
 		system($CMD);      
@@ -119,7 +120,7 @@ log_message;
 if (!$ARGV[0])
 {
    
-    $message = "No target ILS/action passed to program";
+    $message = "No target source or frequency passed to program";
     log_message;
     $message = " ** Program Failed to complete ** ";
     close program_log or die "Cannot close  $program_id log: $!";
@@ -127,10 +128,10 @@ if (!$ARGV[0])
 }
  
 $source=$ARGV[0];
-$message = "The import ILS source is $source";
+$message = "The import source is $source";
 log_message;
 $frequency=$ARGV[1];
-$message = "The import action is $frequency";
+$message = "The import frequency is $frequency";
 log_message;
 $source_frequency = "$source$frequency";
  

@@ -89,6 +89,7 @@ my $config = Config::Tiny->new();
 my $index_files_expected = 8;
 
 my $collection  = "SOAS Library";
+my $recordtype = "marc";
 my $server = "vfdev01.lis.soas.ac.uk";
 
 ##############################################################################################################
@@ -184,7 +185,7 @@ sub drop_collection_index
 #
 	{
 		chdir  $VUFIND_DIR or die "can't chdir to $VUFIND_DIR: $!";
-		$CMD =   "wget 'http://$server:8080/solr/biblio/update?stream.body=<delete><query>collection:\"$collection\"</query></delete>&commit=true'";
+		$CMD =   "wget 'http://$server:8080/solr/biblio/update?stream.body=<delete><query>recordtype:\"$recordtype\"</query></delete>&commit=true'";
 		system($CMD);
 		$CMD =  "rm -Rf update?stream.body*";
 		system($CMD);

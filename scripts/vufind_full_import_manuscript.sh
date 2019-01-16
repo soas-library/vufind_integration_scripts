@@ -25,9 +25,12 @@ echo "$RUN_DATE - VuFind importing manuscript records - " >> "${VUFIND_MAIN_LOG}
 cd ${VUFIND_HOME_DIR}
 rm -rf ./fihrist-mss
 git clone https://github.com/fihristorg/fihrist-mss.git
+rm -rf ./senmai-mss
+git clone https://github.com/bodleian/senmai-mss.git
 find /usr/local/vufind/local/harvest/manuscript/processed/ -name '*.xml' -exec rm {} \;
 
 cp ${VUFIND_HOME_DIR}/fihrist-mss/collections/school\ of\ oriental\ and\ african\ studies/*.xml /usr/local/vufind/local/harvest/manuscript/
+cp ${VUFIND_HOME_DIR}/senmai-mss/collections/school\ of\ oriental\ and\ african\ studies/*.xml /usr/local/vufind/local/harvest/manuscript/
 
 cd ${VUFIND_BIN_DIR}
 pwd

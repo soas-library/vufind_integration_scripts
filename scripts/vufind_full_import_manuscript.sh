@@ -30,7 +30,7 @@ git clone https://github.com/bodleian/senmai-mss.git
 find /usr/local/vufind/local/harvest/manuscript/processed/ -name '*.xml' -exec rm {} \;
 
 cp ${VUFIND_HOME_DIR}/fihrist-mss/collections/school\ of\ oriental\ and\ african\ studies/*.xml /usr/local/vufind/local/harvest/manuscript/
-cp ${VUFIND_HOME_DIR}/senmai-mss/collections/school\ of\ oriental\ and\ african\ studies/*.xml /usr/local/vufind/local/harvest/manuscript/
+cp ${VUFIND_HOME_DIR}/senmai-mss/collections/school_of_oriental_and_african_studies/*.xml /usr/local/vufind/local/harvest/manuscript/
 
 cd ${VUFIND_BIN_DIR}
 pwd

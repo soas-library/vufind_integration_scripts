@@ -137,7 +137,6 @@ $source_frequency = "$source$frequency";
  
 if ($source_frequency eq "doabnightly")
 {
-	#drop_collection_index;
 	import_sources;
 	optimize_vufind_index;
 	create_alphabrowse_index;

@@ -32,7 +32,7 @@ echo "$RUN_DATE - VuFind importing DOAB records - " >> "${VUFIND_MAIN_LOG}"
   
 cd ${VUFIND_BIN_DIR}
 pwd
-./vufind_import_doab.pl doab nightly >> "${VUFIND_MAIN_LOG}"
+./vufind_import_doab.pl doab weekly >> "${VUFIND_MAIN_LOG}"
  
 RUN_DATE_END=`date +"%Y%m%d%H%M"`
 echo "$RUN_DATE_END - VuFind importing DOAB records ended - " >> "${VUFIND_MAIN_LOG}"
